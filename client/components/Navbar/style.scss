@@ -1,0 +1,61 @@
+.containerNavbar {
+  height: 50px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+}
+
+.loginButton {
+  background: white;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.menuToggle {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: black;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .navLinks.show {
+    display: flex;
+  }
+
+  .menuToggle {
+    display: block;
+    cursor: pointer;
+  }
+}
