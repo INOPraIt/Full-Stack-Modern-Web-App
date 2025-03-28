@@ -5,15 +5,19 @@ import './style.scss';
 import Image from 'next/image';
 import { Product } from '@/types/Product';
 
+type CardProductProps = {
+  product: Product;
+  onClick: () => void;
+};
 
-export default function CardProduct(product: Product) {
+export default function CardProduct({ onClick, product }: CardProductProps) {
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const imagePath = product.image;
   const fullImageUrl = `${apiUrl}${imagePath.replace(/^\./, '')}`;
 
   return (
-    <div className='cardProductContainer'>
+    <div onClick={onClick} className='cardProductContainer'>
       <div className='imageBlockProductCard'>
         <Image
           src={fullImageUrl}
@@ -32,9 +36,6 @@ export default function CardProduct(product: Product) {
         <div className='named'>
           <p className='textNamed'>{product.named}</p>
         </div>
-        <div className='description'>
-          <p className='textDescription'>{product.description}</p>
-        </div>
         <hr className='lineCard' />
         <div className='infoAboutProduct'>
           <div className='blockInfoAboutProduct'>
@@ -42,7 +43,7 @@ export default function CardProduct(product: Product) {
             <p className='valueInfoAboutProduct'>${product.price}</p>
           </div>
           <div className='blockInfoAboutProduct'>
-            <p className='headerInfoAboutProduct'>Продажи</p>
+            <p className='headerInfoAboutProduct'>Отзывы</p>
             <p className='valueInfoAboutProduct'>{product.sale}</p>
           </div>
           <div className='blockInfoAboutProduct'>

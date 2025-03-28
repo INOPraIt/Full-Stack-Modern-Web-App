@@ -4,17 +4,28 @@
   height: 90vh;
 
   .filters {
-    width: 30%;
+    width: 20%;
     padding: 20px;
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 10px;
+    margin: 20px;
   }
-  
+
   .cardProduct {
-    width: 70%;
+    width: 80%;
     padding: 20px;
     display: flex;
-    gap: 10%;
+    gap: 50px;
     flex-wrap: wrap;
+  }
+
+  .modalProduct {
+    width: 100%;
+    position: absolute;
+    background-color: rgba(214, 214, 214, 0.178);
+    backdrop-filter: blur(5px);
+    height: 94vh;
   }
 }
 
