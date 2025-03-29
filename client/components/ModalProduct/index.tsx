@@ -21,10 +21,11 @@ const ModalProduct: React.FC<ModalProductProps> = ({ product, onClose }) => {
   };
 
   const handleDecrement = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1)); // Минимум 1
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
   const totalPrice = product.price * quantity
+
 
   return (
     <div className='containerModalProduct'>
@@ -35,42 +36,20 @@ const ModalProduct: React.FC<ModalProductProps> = ({ product, onClose }) => {
         <div className='blocksProduct'>
           <div className='imageBlockModalProduct'>
             <div className='previewImages'>
-              <div className='imageBlockPreview'>
-                <Image
-                  src={fullImageUrl}
-                  width={900}
-                  height={500}
-                  className='previewImage'
-                  alt={product.named}
-                />
-              </div>
-              <div className='imageBlockPreview'>
-                <Image
-                  src={fullImageUrl}
-                  width={900}
-                  height={500}
-                  className='previewImage'
-                  alt={product.named}
-                />
-              </div>
-              <div className='imageBlockPreview'>
-                <Image
-                  src={fullImageUrl}
-                  width={900}
-                  height={500}
-                  className='previewImage'
-                  alt={product.named}
-                />
-              </div>
-              <div className='imageBlockPreview'>
-                <Image
-                  src={fullImageUrl}
-                  width={900}
-                  height={500}
-                  className='previewImage'
-                  alt={product.named}
-                />
-              </div>
+              {product.previewImages.map((e, i) => (
+                <div
+                  key={i}
+                  className='imageBlockPreview'>
+                  <Image
+                    src={`${apiUrl}${e.replace(/^\./, '')}`}
+                    width={900}
+                    height={500}
+                    className='previewImage'
+                    alt={product.named}
+                  />
+                </div>
+              ))}
+
             </div>
             <div className='theMainPicture'>
               <div className='blockMainPage'>

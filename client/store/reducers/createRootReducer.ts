@@ -1,7 +1,8 @@
 // store/reducers/createRootReducer.ts
 import { combineReducers } from 'redux';
-import userReducer from './user.reducer';
+
 import productReducer from './product.reducer';
+import userReducer from './user.reducer';
 
 const rootReducer = combineReducers({
   user: userReducer,

@@ -39,7 +39,7 @@ module.exports = async function (fastify) {
       const price = req.body.price || null;
       const sale = req.body.sale || null;
       const profit = req.body.profit || null;
-      const previewImages = req.body.previewImages || [];
+      let previewImages = req.body.previewImages || [];
       const status = req.body.status || null;
       const numberOfCopies = req.body.numberOfCopies || null;
       
@@ -54,13 +54,13 @@ module.exports = async function (fastify) {
         fs.writeFileSync(imagePath, image);
       }
 
-      let previewImagePath = null;
+      const uploadDir = './uploads';
+      if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
-      if (previewImages) {
-        const uploadDir = './uploads';
-        if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-        previewImagePath = `${uploadDir}/${uuid4()}.jpg`;
-        fs.writeFileSync(previewImagePath, previewImages);
+      for (let i = 0; i < previewImages.length; i++) {
+        const previewImagePath = `${uploadDir}/${uuid4()}.jpg`;
+        fs.writeFileSync(previewImagePath, previewImages[i]);
+        previewImages[i] = previewImagePath
       }
 
       const product = new Product({ 
@@ -70,7 +70,7 @@ module.exports = async function (fastify) {
         price,
         sale,
         profit,
-        previewImages: previewImagePath,
+        previewImages,
         status,
         numberOfCopies
       });
