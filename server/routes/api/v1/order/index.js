@@ -54,21 +54,18 @@ module.exports = async function (fastify) {
       return reply.code(401).send({ message: "Unauthorized" });
     }
 
-    const { name, description, products } = request.body; // Теперь принимаем products
+    const { name, description, products } = request.body;
     const userId = request.user._id;
 
-    // Проверяем, передан ли массив продуктов
     if (!Array.isArray(products)) {
       return reply.code(400).send({ message: "products должен быть массивом" });
     }
 
-    // Проверяем, что все переданные продукты существуют
     const existingProducts = await Products.find({ _id: { $in: products } });
     if (existingProducts.length !== products.length) {
       return reply.code(400).send({ message: "Некоторые продукты не найдены" });
     }
 
-    // Создаём заказ с продуктами
     const order = new Orders({ name, description, user: userId, products });
     await order.save();
 

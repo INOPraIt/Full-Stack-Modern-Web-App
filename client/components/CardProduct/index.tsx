@@ -13,6 +13,9 @@ type CardProductProps = {
 export default function CardProduct({ onClick, product }: CardProductProps) {
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  console.log('ApiUrl:', apiUrl);
+  
   const imagePath = product.image;
   const fullImageUrl = `${apiUrl}${imagePath.replace(/^\./, '')}`;
 
@@ -25,6 +28,7 @@ export default function CardProduct({ onClick, product }: CardProductProps) {
           height={500}
           className='image'
           alt={product.named}
+          style={{ objectFit: 'contain' }}
         />
       </div>
       <div className='infoBlock'>

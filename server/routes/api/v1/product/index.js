@@ -7,7 +7,7 @@ module.exports = async function (fastify) {
 
   fastify.get('/', async (req, rep) => {
     try {
-      const filter = {}; // Если фильтр не нужен, оставить пустым
+      const filter = {};
       const products = await Product.find(filter);
       rep.send(products);
     } catch (error) {
@@ -17,8 +17,8 @@ module.exports = async function (fastify) {
 
   fastify.get('/:id', async (req, rep) => {
     try {
-      const { id } = req.params; // Получаем id из параметров маршрута
-      const product = await Product.findById(id); // Ищем продукт по id
+      const { id } = req.params;
+      const product = await Product.findById(id);
 
       if (!product) {
         return rep.code(404).send({ message: "Продукт не найден" });

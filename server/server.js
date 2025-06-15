@@ -14,8 +14,6 @@ const fastifyStatic = require("@fastify/static");
 dotenv.config();
 
 (async () => {
-
-
   await mongoose.connect("mongodb://127.0.0.1:27017/nexttest", {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -9,13 +9,15 @@ type ModalProductProps = {
 };
 
 const ModalProduct: React.FC<ModalProductProps> = ({ product, onClose }) => {
-
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const imagePath = product.image;
   const fullImageUrl = `${apiUrl}${imagePath.replace(/^\./, '')}`;
 
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectImage, setSelectImage] = useState<string>('');
 
+  console.log(selectImage);
+  
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -25,7 +27,6 @@ const ModalProduct: React.FC<ModalProductProps> = ({ product, onClose }) => {
   };
 
   const totalPrice = product.price * quantity
-
 
   return (
     <div className='containerModalProduct'>
@@ -38,27 +39,29 @@ const ModalProduct: React.FC<ModalProductProps> = ({ product, onClose }) => {
             <div className='previewImages'>
               {product.previewImages.map((e, i) => (
                 <div
+                  onClick={() => setSelectImage(e)}
                   key={i}
                   className='imageBlockPreview'>
                   <Image
                     src={`${apiUrl}${e.replace(/^\./, '')}`}
                     width={900}
                     height={500}
-                    className='previewImage'
+                    className={selectImage == e ? 'imageBlockPreviewActive' : 'imageBlockPreview'}
                     alt={product.named}
+                    style={{ objectFit: 'contain' }}
                   />
                 </div>
               ))}
-
             </div>
             <div className='theMainPicture'>
               <div className='blockMainPage'>
                 <Image
-                  src={fullImageUrl}
+                  src={selectImage == '' ? fullImageUrl : `${apiUrl}${selectImage.replace(/^\./, '')}`}
                   width={900}
                   height={500}
                   className='mainImage'
                   alt={product.named}
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>

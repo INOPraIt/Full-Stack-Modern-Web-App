@@ -24,6 +24,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar {
+  width: 5px;               /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: rgba(255, 166, 0, 0);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(155, 155, 155);
+  border-radius: 20px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

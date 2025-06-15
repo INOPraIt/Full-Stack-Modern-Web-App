@@ -1,61 +1,159 @@
 .containerNavbar {
-  height: 50px;
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.navLinks {
-  display: flex;
-  gap: 1rem;
-}
-
-.navLinks a {
-  color: white;
-  text-decoration: none;
-}
-
-.loginButton {
-  background: white;
+  height: 120px;
+  background-color: rgb(255, 255, 255);
   color: black;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
+  border-bottom: 1px solid rgb(233, 233, 233);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.menuToggle {
-  display: none;
-}
+  .stringsNav {
+    width: 70%;
 
-/* Mobile */
-@media (max-width: 768px) {
-  .navLinks {
-    display: none;
+    .stringNavOne {
+      display: flex;
+      height: 60px;
+      align-items: center;
+      gap: 20;
+
+      .logoText {
+        color: black;
+        font-family: "Poppins", sans-serif;
+        font-size: 35px;
+        font-weight: 600;
+      }
+
+      .btnCatalog {
+        width: 120px;
+        height: 40px;
+        background-color: rgb(47, 108, 254);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 17px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .searchStringNav {
+        width: 50%;
+        display: flex;
+
+        .search {
+          width: 100%;
+          height: 40px;
+          cursor: pointer;
+          font-size: 17px;
+          font-family: "Rubik", sans-serif;
+          border-right: none;
+          background-color: white;
+          border: 1px solid rgb(47, 108, 254);
+          outline: none;
+          color: black;
+          padding-left: 15px;
+          border-radius: 7px 0 0 7px;
+        }
+
+        .searchProfuctBtn {
+          width: 120px;
+          height: 40px;
+          cursor: pointer;
+          font-size: 17px;
+          font-family: "Rubik", sans-serif;
+          border-right: none;
+          background-color: rgb(47, 108, 254);
+          border: 1px solid rgb(47, 108, 254);
+          outline: none;
+          color: rgb(255, 255, 255);
+          border-radius: 0 7px 7px 0;
+        }
+      }
+
+      .linksHelper {
+        display: flex;
+        gap: 40px;
+        margin-left: 30px;
+        margin-top: 5px;
+        .orders {
+          .text {
+            transition: 0.2s;
+            font-family: "Rubik", sans-serif;
+            font-size: 14px;
+            color: rgb(129, 129, 129);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .imageOrder {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .text:hover {
+            transition: 0.2s;
+            font-family: "Rubik", sans-serif;
+            font-size: 14px;
+            color: rgb(47, 108, 254);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+      }
+
+      .avatarProfileNav {
+        margin-left: 10px;
+        .avatarNav {
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+        }
+      }
+    }
+
+    .stringTwo {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-left: 15%;
+
+      .linkCategory {
+      }
+    }
+  }
+  .modalCatalog {
     position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    background: black;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 0;
-  }
-
-  .navLinks.show {
+    width: 100%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.288);
+    margin-top: 980px;
+    z-index: 30;
     display: flex;
-  }
+    justify-content: center;
+    backdrop-filter: blur(10px);
 
-  .menuToggle {
-    display: block;
-    cursor: pointer;
+    .modalCatalogContent {
+      width: 100%;
+      background-color: white;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+
+      .modalCatalogContentTrue {
+        width: 70%;
+      }
+    }
+
+    .modalCatalogContent::-webkit-scrollbar {
+      width: 3px; /* ширина scrollbar */
+    }
+    .modalCatalogContent::-webkit-scrollbar-track {
+      background: rgba(255, 166, 0, 0); /* цвет дорожки */
+    }
+    .modalCatalogContent::-webkit-scrollbar-thumb {
+      background-color: rgb(155, 155, 155);
+      border-radius: 20px;
+    }
   }
 }
