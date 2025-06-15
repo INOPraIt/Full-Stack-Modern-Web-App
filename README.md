@@ -42,7 +42,11 @@ This repository serves as a **portfolio piece** showcasing my ability to:
 
 ## 📸 Preview
 
-> *(Add screenshots or a GIF here to demonstrate UI/UX)*
+![Home page](https://sun9-53.userapi.com/impg/WyUxbD8CDzAXclFOpgfhrbIasGGysWLsrKhlpg/SEL-7zmJgMk.jpg?size=1919x1011&quality=95&sign=211cf1371f162a68fc24bf9cb1be312f&type=album)
+
+![About product](https://sun9-40.userapi.com/impg/m0MNUlLGzutttXEs4Qpi2Op_2FEeN6Y7KuN-iA/dr0n-JVh9R8.jpg?size=1919x956&quality=95&sign=3758cd72fe33e8bfaa097bf13d767a19&type=album)
+
+![About product](https://sun9-19.userapi.com/impg/cIKjmC-iTOC0aZxHCP_KNmLAPi-9W6vaeGS3uQ/RQKhGZebXXE.jpg?size=1919x955&quality=95&sign=22c092a3767e07a8ffdecb7473b70558&type=album)
 
 ---
 
