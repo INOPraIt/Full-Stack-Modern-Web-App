@@ -1,0 +1,48 @@
+@use '../../styles/_variables'
+
+.navbarContainer
+  margin: 0
+  padding: 0
+  width: 100%
+  color: black
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+  .navbarLinks
+    padding: 10px
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    .logo
+    
+    .links
+      gap: 25px
+      display: flex
+
+      .link
+        outline: none
+        font-size: 18px
+        font-weight: 400
+        text-decoration: none
+        color: variables.$text-color
+        font-family: var(--font-lato), system-ui, sans-serif
+
+    .buttons
+      display: flex
+
+      .buttonLogin
+        cursor: pointer
+        font-size: 16px
+        background: none
+        border-radius: 5px
+        color: variables.$text-color
+        padding: 10px 20px 10px 20px
+        border: 1px solid variables.$base-blue
+        font-family: var(--font-lato), system-ui, sans-serif
+
+  .navbarLine
+    height: 1px
+    width: 100%
+    background: variables.$base-grey

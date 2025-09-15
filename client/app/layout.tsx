@@ -1,20 +1,19 @@
+import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from '../components/Navbar';
-import ClientLayout from '../components/ClientLayout';
-import Provider from '../components/Provider';
-import { ToastContainer } from 'react-toastify';
+import localFont from 'next/font/local';
+import ReduxProvider from "@/store/Provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const lato = localFont({
+  src: [
+    {
+      path: './fonts/Lato-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-lato',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,14 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Provider>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </Provider>
-        <ToastContainer />
+    <html lang="en" className={lato.variable}>
+      <body>
+        <Navbar />
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

@@ -7,4 +7,3 @@ module.exports = mongoose.model("Orders", new mongoose.Schema({
   description: {type: String, required: true},
   sum: { type: Number, defaul: 0 },
 }));
-

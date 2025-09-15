@@ -10,4 +10,7 @@ module.exports = mongoose.model("Products", new mongoose.Schema({
   previewImages:{ type:[String], default:[]},
   status: { type: Boolean, default: true },
   numberOfCopies: { type: Number, default: 100 },
+  categories: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Category', index: true}
+  ]
 }));

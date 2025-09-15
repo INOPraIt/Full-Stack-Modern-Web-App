@@ -58,10 +58,6 @@ dotenv.config();
     options: { prefix: '/api/v1' }
   });
 
-  await fastifyApp.addHook("preHandler", async (request, reply) => {
-    console.log("Current User:", request.user);
-  });
-
   fastifyApp.ready(() => {
     console.log(fastifyApp.printRoutes());
   });
