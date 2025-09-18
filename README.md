@@ -6,7 +6,7 @@ This project is a **comprehensive demonstration** of my skills in building moder
 
 ### 🧠 Frontend
 - ⚛️ **React** with **Next.js** for server-side rendering and new App-routing
-- 🔄 **Redux-Saga** for advanced asynchronous state management
+- 🔄 **Redux-toolkit** for advanced asynchronous state management
 - 🧪 **Unit Testing** to ensure reliability and maintainability
 - 🎨 **Custom UI** crafted with responsive and accessible layout
 - 💻 **TypeScript** for static typing and better developer experience
