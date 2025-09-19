@@ -1,0 +1,32 @@
+@use '../styles/variables'
+  
+.containerRegister
+  width: 100%
+  height: 100%
+  min-height: 500px
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .form
+    width: 90%
+    background: variables.$base-grey
+    max-width: 500px
+    height: 200px
+    padding: 20px
+    display: flex
+    flex-direction: column
+    gap: 15px
+
+    .titleRegister
+      font-size: 20px
+      font-family: var(--font-lato), system-ui, sans-serif
+
+    .input
+      font-family: var(--font-lato), system-ui, sans-serif
+      background: variables.$base-grey
+      border: 1px solid grey
+      height: 30px
+      padding-left: 10px
+
+

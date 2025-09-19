@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import ReduxProvider from "@/store/Provider";
+import { ToastContainer } from "react-toastify";
 
 const lato = localFont({
   src: [
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={lato.variable}>
       <body>
+        <ToastContainer />
         <Navbar />
         <ReduxProvider>{children}</ReduxProvider>
       </body>

@@ -8,7 +8,6 @@ import Image from "next/image";
 
 import logo from "../../../public/images/logo.png";
 
-
 export default () => {
   return (
     <div className={style.navbarContainer}>
@@ -36,7 +35,7 @@ export default () => {
         </div>
         <div className={style.buttons}>
           <button className={style.buttonLogin}>
-            Авторизация
+            <Link href={"/register"}>Авторизация</Link>
           </button>
         </div>
       </div>
