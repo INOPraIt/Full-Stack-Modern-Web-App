@@ -6,6 +6,7 @@ import style from "./style.module.sass";
 import { useRegisterUserMutation } from "@/store/reducers/User";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { redirect } from 'next/navigation'
 
 export default () => {
   const [name, setName] = React.useState("");
@@ -34,11 +35,12 @@ export default () => {
     });
   };
 
-  console.log(data);
-
   React.useEffect(() => {
     if (data?.success) {
       toast.success("Успешная регистрация");
+      setTimeout(() => {
+        redirect('/login')
+      }, 5000)
     } else if (data && !data.success) {
       toast.error(data.message || "Ошибка при регистрации");
     }

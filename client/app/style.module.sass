@@ -1,7 +1,85 @@
 @use './styles/variables'
   
 .homeContainer
-  display: grid
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
-  gap: 20px
-  padding: 40px
+  display: flex
+  align-items: center
+  flex-direction: column
+  height: calc( 100vh - 70px )
+  width: 100%
+  background: linear-gradient(to top, rgba(0, 120, 255, .28) 0%, rgba(0, 120, 255, 0) 60%), #fff
+
+  .titleWelcome
+    font-family: var(--font-lato), system-ui, sans-serif
+    font-size: 40px
+    margin-top: 100px
+
+  .blockWelcome
+    display: flex
+    gap: 6px
+    margin-top: 5px
+
+    .subtitle
+      font-family: var(--font-lato), system-ui, sans-serif
+      font-size: 40px
+    
+    .subtitleTwo
+      font-family: var(--font-lato), system-ui, sans-serif
+      color: variables.$base-blue
+      font-size: 40px
+
+  .button
+    width: 200px
+    background: variables.$base-blue
+    height: 50px
+    border-radius: 100px
+    margin-top: 30px
+    color: white
+    font-size: 18px
+    border: none
+    cursor: pointer
+
+  .subtitleWelcome
+    color: rgb(183, 183, 183)
+    font-size: 20px
+    margin-top: 20px
+    width: 300px
+    text-align: center
+    font-family: var(--font-lato), system-ui, sans-serif
+
+
+  .cardsWelcome 
+    display: flex
+    gap: 10%
+    margin-top: 80px
+    align-items: center
+
+    .cardStyle
+      width: 500px
+      height: 220px
+      background: rgb(255, 255, 255)
+      border: 1px solid rgba(0, 149, 255, 0.174)
+      box-shadow: 1px 20px 30px rgba(0, 149, 255, 0.156)
+      border-radius: 30px
+      margin-top: 20px
+
+
+    .cardGeneral
+      width: 500px
+      height: 300px
+      background: red
+      background: rgb(255, 255, 255)
+      border: 1px solid rgba(0, 149, 255, 0.174)
+      box-shadow: 1px 20px 30px rgba(0, 149, 255, 0.156)
+      border-radius: 30px
+
+    .cardStyleTwo
+      width: 430px
+      height: 250px
+      background: rgb(255, 255, 255)
+      border: 1px solid rgba(0, 149, 255, 0.174)
+      box-shadow: 1px 20px 30px rgba(0, 149, 255, 0.156)
+      border-radius: 30px
+      margin-top: 55px
+
+
+

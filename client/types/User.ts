@@ -17,7 +17,20 @@ export interface RegisterResponse {
   message?: string
 }
 
+export interface LoginResponse {
+  message: string
+  user: User
+}
+
 export interface LoginUser {
   username: string
   password: string
+}
+
+export interface ProfileResponse {
+  user: User;
+}
+
+export interface LogoutResponse {
+  message: string
 }

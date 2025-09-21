@@ -4,11 +4,17 @@ import type {
   RegisterResponse,
   LoginUser,
   User,
+  LoginResponse,
+  ProfileResponse,
+  LogoutResponse,
 } from "@/types/User";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:8080/api/v1/" }),
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: "http://localhost:8080/api/v1/",
+    credentials: 'include',
+  }),
   tagTypes: ["User"],
   endpoints: (builder) => ({
     registerUser: builder.mutation<RegisterResponse, RegisterUser>({
@@ -23,8 +29,7 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-
-    loginUser: builder.mutation<User, LoginUser>({
+    loginUser: builder.mutation<LoginResponse, LoginUser>({
       query: (body) => ({
         url: "user/login",
         method: "POST",
@@ -32,9 +37,13 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    getProfile: builder.query<ProfileResponse, void>({
+      query: () => 'user/profile',
+      providesTags: ["User"],
+    }),
 
-    getProfile: builder.query<User, void>({
-      query: () => `user/profile`,
+    logout: builder.query<LogoutResponse, void>({
+      query: () => 'user/logout',
       providesTags: ["User"],
     }),
   }),
@@ -44,4 +53,5 @@ export const {
   useGetProfileQuery,
   useRegisterUserMutation,
   useLoginUserMutation,
+  useLogoutQuery,
 } = userApi;

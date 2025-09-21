@@ -1,5 +1,5 @@
 const fastify = require("fastify");
-const multipart = require('@fastify/multipart');
+const multipart = require("@fastify/multipart");
 const path = require("path");
 const dotenv = require("dotenv");
 const autoload = require("@fastify/autoload");
@@ -19,20 +19,26 @@ dotenv.config();
     useUnifiedTopology: true,
   });
 
-  const fastifyApp = fastify({trustProxy: true});
+  const fastifyApp = fastify({ trustProxy: true });
 
   await fastifyApp.register(fastifyCors, {
-    origin: true,
+    origin: "http://localhost:3000",
     credentials: true,
   });
+  // await fastifyApp.register(fastifyCors, {
+  //   origin: true,
+  //   credentials: true,
+  // });
 
   await fastifyApp.register(fastifySecureSession, {
-    secret: process.env.SESSION_SECRET || "a_very_long_secret_key_that_is_at_least_32_bytes",
-    cookie: { 
-      path: '/', 
+    secret:
+      process.env.SESSION_SECRET ||
+      "a_very_long_secret_key_that_is_at_least_32_bytes",
+    cookie: {
+      path: "/",
       httpOnly: true,
-      maxAge: 12 * 30 * 24 * 60 * 60, 
-      domain: '127.0.0.1'
+      maxAge: 12 * 30 * 24 * 60 * 60,
+      // domain: '127.0.0.1'
     },
   });
 
@@ -40,22 +46,20 @@ dotenv.config();
   await fastifyApp.register(fastifyPassport.initialize());
 
   await fastifyApp.register(multipart, {
-    attachFieldsToBody: 'keyValues',
+    attachFieldsToBody: "keyValues",
     limits: {
       fileSize: 10 * 1024 * 1024, // Ограничение на размер файла, например 10 MB
     },
   });
-  
 
   await fastifyApp.register(fastifyStatic, {
     root: path.join(__dirname, "uploads"),
     prefix: "/uploads/",
   });
-  
 
   await fastifyApp.register(autoload, {
     dir: path.join(__dirname, "routes/api/v1"),
-    options: { prefix: '/api/v1' }
+    options: { prefix: "/api/v1" },
   });
 
   fastifyApp.ready(() => {
@@ -65,7 +69,7 @@ dotenv.config();
   fastifyPassport.use(
     "local",
     new LocalStrategy(async (username, password, done) => {
-      console.log('Started func');
+      console.log("Started func");
 
       try {
         const user = await User.findOne({ username });
@@ -82,8 +86,11 @@ dotenv.config();
   fastifyPassport.registerUserSerializer((user) => user);
   fastifyPassport.registerUserDeserializer((user) => user);
 
-  fastifyApp.listen({ port: process.env.PORT || 8080, host: "0.0.0.0" }, (error, address) => {
-    if (error) throw error
-    console.log(`Server running on ${address}`);
-  });
-})()
+  fastifyApp.listen(
+    { port: process.env.PORT || 8080, host: "0.0.0.0" },
+    (error, address) => {
+      if (error) throw error;
+      console.log(`Server running on ${address}`);
+    }
+  );
+})();
