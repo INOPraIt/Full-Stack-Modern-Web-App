@@ -12,3 +12,18 @@ export interface Product {
   numberOfCopies: number
   __v?: number
 }
+
+export type GetProductsArgs = {
+  q?: string
+  page?: number
+  limit?: number
+  category?: string
+  categoryId?: string
+}
+
+export type GetProductsResp = {
+  items: Product[]
+  total: number
+  page: number
+  pages: number
+}

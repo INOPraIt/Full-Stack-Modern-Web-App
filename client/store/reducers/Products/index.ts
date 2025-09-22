@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Product } from '@/types/Product'
+import type { Product, GetProductsArgs, GetProductsResp} from '@/types/Product'
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
@@ -8,15 +8,22 @@ export const productsApi = createApi({
   }),
   tagTypes: ['Products', 'Product'],
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], void>({
-      query: () => `product`,
+    getProducts: builder.query<GetProductsResp, GetProductsArgs | void>({
+      query: (args) => {
+        const { q, page = 1, limit = 20, category, categoryId } = args ?? {}
+        const params: Record<string, any> = { page, limit }
+        if (q) params.q = q
+        if (category) params.category = category
+        if (categoryId) params.categoryId = categoryId
+        return { url: 'product', params }
+      },
       providesTags: (result) =>
-        result
+        result?.items
           ? [
-              ...result.map((p) => ({ type: 'Product' as const, id: p._id })),
-              { type: 'Products', id: 'LIST' },
+              ...result.items.map((p) => ({ type: 'Product' as const, id: p._id })),
+              { type: 'Products' as const, id: 'LIST' },
             ]
-          : [{ type: 'Products', id: 'LIST' }],
+          : [{ type: 'Products' as const, id: 'LIST' }],
     }),
     getProductById: builder.query<Product, string>({
       query: (id) => `product/${id}`,

@@ -1,5 +1,6 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import styles from "./style.module.sass";
 
 import React from "react";
@@ -15,11 +16,25 @@ export default () => {
       <span className={styles.subtitleWelcome}>
         Мой тестовый FullStack проект на NextJS и FastifyJS
       </span>
-      <button className={styles.button}>Перейти</button>
+      <button 
+        onClick={() => redirect('/market')}
+        className={styles.button}>Перейти</button>
       <div className={styles.cardsWelcome}>
-        <div className={styles.cardStyle}>dd</div>
-        <div className={styles.cardGeneral}></div>
-        <div className={styles.cardStyleTwo}>dd</div>
+        <div className={styles.cardStyle}>
+          <span className={styles.textCardStyle}>
+            Поддержка всех фишек современного маркетплейса
+          </span>
+        </div>
+        <div className={styles.cardGeneral}>
+          <span className={styles.textCardStyle}>
+            Поддержка всех фишек современного маркетплейса
+          </span>
+        </div>
+        <div className={styles.cardStyleTwo}>
+          <span className={styles.textCardStyle}>
+            Поддержка всех фишек современного маркетплейса
+          </span>
+        </div>
       </div>
     </div>
   );

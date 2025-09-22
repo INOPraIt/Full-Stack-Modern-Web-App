@@ -16,26 +16,66 @@ module.exports = async function (fastify) {
   }
 
   fastify.get('/', async (req, rep) => {
-    try {
-      const { category, categoryId } = req.query;
-      const filter = {};
+  try {
+    const { category, categoryId, q = '', page = 1, limit = 20 } = req.query;
 
-      if (categoryId) {
-        filter.categories = categoryId;
-      } else if (category) {
-        const cat = await Category.findOne({ slug: category }, { _id: 1 });
-        if (!cat) return rep.send([]);
-        filter.categories = cat._id;
-      }
-
-      const products = await Product.find(filter)
-        .populate('categories', 'name slug');
-
-      rep.send(products);
-    } catch (error) {
-      rep.code(500).send({ message: "Ошибка при получении продуктов", error });
+    const filter = {};
+    // категории (как было)
+    if (categoryId) {
+      filter.categories = categoryId;
+    } else if (category) {
+      const cat = await Category.findOne({ slug: category }, { _id: 1 });
+      if (!cat) return rep.send({ items: [], total: 0, page: 1, pages: 0 });
+      filter.categories = cat._id;
     }
-  });
+
+    // поиск по названию (поле named)
+    if (q) {
+      const escapeRegExp = (s = '') => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      filter.named = { $regex: escapeRegExp(q), $options: 'i' };
+    }
+
+    const pageNum = Math.max(1, Number(page) || 1);
+    const limitNum = Math.min(100, Math.max(1, Number(limit) || 20));
+    const skip = (pageNum - 1) * limitNum;
+
+    const [items, total] = await Promise.all([
+      Product.find(filter)
+        .populate('categories', 'name slug')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limitNum),
+      Product.countDocuments(filter),
+    ]);
+
+    rep.send({ items, total, page: pageNum, pages: Math.ceil(total / limitNum) });
+  } catch (error) {
+    rep.code(500).send({ message: 'Ошибка при получении продуктов', error });
+  }
+});
+
+
+  // fastify.get('/', async (req, rep) => {
+  //   try {
+  //     const { category, categoryId } = req.query;
+  //     const filter = {};
+
+  //     if (categoryId) {
+  //       filter.categories = categoryId;
+  //     } else if (category) {
+  //       const cat = await Category.findOne({ slug: category }, { _id: 1 });
+  //       if (!cat) return rep.send([]);
+  //       filter.categories = cat._id;
+  //     }
+
+  //     const products = await Product.find(filter)
+  //       .populate('categories', 'name slug');
+
+  //     rep.send(products);
+  //   } catch (error) {
+  //     rep.code(500).send({ message: "Ошибка при получении продуктов", error });
+  //   }
+  // });
 
   fastify.get('/:id', async (req, rep) => {
     try {
