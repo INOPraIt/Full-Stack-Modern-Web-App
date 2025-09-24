@@ -29,7 +29,6 @@ export default () => {
     }, 300);
     return () => clearTimeout(t);
   }, [q, pathname, router, searchParams]);
-
   return (
     <div className={style.navbarContainer}>
       <div className={style.navbarLinks}>
@@ -50,6 +49,9 @@ export default () => {
           <Link className={style.link} href="/trade">
             Обмены
           </Link>
+          <Link className={style.link} href="/cart">
+            Корзина
+          </Link>
           <button onClick={() => setOpen((v) => !v)} className={style.search}>
             <span className={style.link}>Поиск</span>
           </button>
@@ -62,7 +64,6 @@ export default () => {
           </button>
         </div>
       </div>
-
       {open && (
         <div className={style.searchInput}>
           <input

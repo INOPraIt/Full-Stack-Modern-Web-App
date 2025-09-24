@@ -1,28 +1,32 @@
-"use-client";
+'use client';
 
-import style from "./style.module.sass";
-
-import React from "react";
-import Image from "next/image";
-
-import type { Product } from "@/types/Product";
+import style from './style.module.sass';
+import React from 'react';
+import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/store/slice/CartSlice';
+import type { AppDispatch } from '@/store';
+import type { Product } from '@/types/Product';
+import { toast } from 'react-toastify';
 
 interface CardProductProps {
   product: Product;
 }
 
-export default ({ product }: CardProductProps) => {
-  const priviewImages = product.previewImages ?? [];
+export default function CardProduct({ product }: CardProductProps) {
+  const dispatch = useDispatch<AppDispatch>();
 
-  const limitTextDescription = (text: string) => {
-    if (text.length > 10) {
-      return text.substring(0, 10);
-    }
-  };
+  const previewImages = product.previewImages ?? [];
 
-  const correctUrl = (link: string) => {
-    return link.replace("./", "/");
-  };
+  const limitTextDescription = (text: string, n = 100) =>
+    text.length > n ? text.slice(0, n) + '…' : text;
+
+  const correctUrl = (link: string) => link.replace('./', '/');
+
+  const addToCart = (p: Product) => {
+    dispatch(addItem({product: p, qty: 1}))
+    toast.success("Добавленно в корзину");
+  }
 
   return (
     <div className={style.productContainer}>
@@ -35,15 +39,14 @@ export default ({ product }: CardProductProps) => {
           height={700}
         />
       </div>
+
       <div className={style.imagesProduct}>
-        {priviewImages.map((previewImage, index) => (
-          <div 
-            key={index}
-            className={style.blockImage}>
+        {previewImages.map((src, i) => (
+          <div key={i} className={style.blockImage}>
             <Image
               className={style.previewImage}
               alt="product-image-block"
-              src={`http://127.0.0.1:8080${correctUrl(previewImage)}`}
+              src={`http://127.0.0.1:8080${correctUrl(src)}`}
               width={50}
               height={50}
             />
@@ -57,8 +60,13 @@ export default ({ product }: CardProductProps) => {
         </span>
       </div>
       <div className={style.buttonAddCart}>
-        <button className={style.btnAddToCart}>В корзину</button>
+        <button
+          onClick={() => addToCart(product)}
+          className={style.btnAddToCart}
+        >
+          В корзину
+        </button>
       </div>
     </div>
   );
-};
+}

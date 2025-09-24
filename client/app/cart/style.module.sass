@@ -1,0 +1,66 @@
+@use '../styles/_variables'
+  
+.containerCart
+  width: 100%
+
+  .titleCart
+    color: variables.$text-color
+    font-family: var(--font-lato), system-ui, sans-serif
+    font-size: 35px
+    margin-left: 5%
+
+  .productsCartContainer
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 30px
+
+
+
+    .productCart
+      width: 90%
+      height: 100px
+      display: flex
+      margin-top: 20px
+      justify-content: space-between
+
+      .productNamedAndImage
+        display: flex
+
+        .imageProductCart
+          width: 100px
+          height: 100px
+
+          .productimageCart
+            object-fit: contain
+
+        .namedProduct
+          color: black
+          margin-left: 2%
+          font-size: 20px
+          font-family: var(--font-lato), system-ui, sans-serif
+          width: 500px
+
+      .priceAndQty
+        display: flex
+        gap: 40px
+
+        .priceProduct
+          color: black
+          font-size: 18px
+          font-family: var(--font-lato), system-ui, sans-serif
+
+        .btnPlusProduct
+          height: 20px
+          width: 20px
+          border: none
+          background: none
+          font-size: 20px
+          cursor: pointer
+
+    .lineCart
+      width: 90%
+      background: variables.$base-grey
+      height: 1px
+      margin-top: 10px
